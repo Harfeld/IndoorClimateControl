@@ -90,6 +90,8 @@ int main(void)
 		//read gas data
 		char co2Ppm[7];
 		sprintf(co2Ppm, "%.1f", MQGetGasPercentage(CO2));
+		SendString(co2Ppm);
+		SendString("\r\n");
 		
 		//read temp and hum data		
 		char hum[7];
@@ -119,6 +121,7 @@ int main(void)
 		LCDDispString("CO2: ");
 		LCDDispString(co2Ppm);LCDDispString("ppm");
 		_delay_ms(3000);
+		
     }
 }
 

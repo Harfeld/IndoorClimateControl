@@ -17,7 +17,7 @@ void Init_ADC()
 	// PF pins are inputs (ADC7-ADC0 inputs)
 	DDRF = 0;
 	// Internal 5 volt reference, ADLAR = 0, Input = ADC0 single ended (potentiometer)
-	ADMUX = 0b01100111;
+	ADMUX = 0b01000111;
 	// ADC enable
 	// ADC interrupt disabled
 	// ADC prescaler = 128 (=> ADC clock = 16 MHz / 128 = 125 kHZ)
