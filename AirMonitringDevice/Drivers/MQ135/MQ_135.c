@@ -12,14 +12,14 @@
 //https://da.co2.earth/
 //https://components101.com/sensors/mq135-gas-sensor-for-air-quality
 
-#define CALIBRATION_SAMPLES 50
+#define CALIBRATION_SAMPLES 10
 #define CALIBRATION_INTERVAL 500
 #define READ_SAMPLES 5
 #define READ_INTERVAL 50
 #define CO2_BASE_PPM 415
 	
-//Initialize Ro
-int Ro_CO2 = 10;
+//Initialize Ro \n
+float Ro_CO2 = 10;
 
 //Measured on module
 int RL_VALUE = 19;
@@ -32,14 +32,16 @@ float CO2Curve[2]  =  {114.97, -2.957};
 //Output:  voltage
 //Calculate Voltage from ADC
 float AdcToVoltage(int adc_value){
-	return (((float)adc_value)/1023.0)*5.0;
+	float result = (((float)adc_value)/1023.0)*5.0;
+	return result;
 }
 
 //Input:   adc value
 //Output:  Rs sensor resistance
 //Calculate Sensor resistance from ADC
 float MQResistanceCalculation(int adc_value){
-	return ((5.0*(float)RL_VALUE)-((float)RL_VALUE*AdcToVoltage(adc_value)))/AdcToVoltage(adc_value);
+	volatile float result = ((5.0*(float)RL_VALUE)-((float)RL_VALUE*AdcToVoltage(adc_value)))/AdcToVoltage(adc_value);
+	return result;
 }
 
 //Initializes the sensor by initializing the dependencies
@@ -76,8 +78,7 @@ void MqCalibrate(enum Gas gas){
 float MQRead(){
 	int i;
 	float rs=0;
-	
-	for (i=0;i<READ_SAMPLES;i++) {
+		for (i=0;i<READ_SAMPLES;i++) {
 		rs += MQResistanceCalculation(AnalogRead());
 		_delay_ms(READ_INTERVAL);
 	}
@@ -88,8 +89,9 @@ float MQRead(){
 //Input:   Gas type
 //Output:  ppm for selected gas type
 float MQGetGasPercentage(enum Gas gas){
+	volatile float Rs = MQRead();
 	if(gas == CO2){
-		return CO2Curve[0] * pow(MQRead()/Ro_CO2, CO2Curve[1]);
+		return CO2Curve[0] * pow((Rs/Ro_CO2), CO2Curve[1]);
 	}
 	
 	return -1;

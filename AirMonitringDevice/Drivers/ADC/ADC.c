@@ -10,14 +10,14 @@
 #include <util/delay.h>
 #include <avr/io.h>
 #include <stdio.h>
+#include "../UART/uart.h"
 
 void Init_ADC()
 {
 	// PF pins are inputs (ADC7-ADC0 inputs)
-	DDRK = 0;
+	DDRF = 0;
 	// Internal 5 volt reference, ADLAR = 0, Input = ADC0 single ended (potentiometer)
 	ADMUX = 0b01000000;
-	ADMUX |= 0b00100111;
 	// ADC enable
 	// ADC interrupt disabled
 	// ADC prescaler = 128 (=> ADC clock = 16 MHz / 128 = 125 kHZ)
@@ -31,6 +31,9 @@ int AnalogRead(){
 	while (ADCSRA & 0b01000000)
 	{}
 	// Send ADC result to terminal
-	float adcValue = ADCW;
+	int adcValue = ADCW;
+	SendString("ADC value:");
+	SendInteger(adcValue);
+	SendString("\r\n");
 	return adcValue;
 }
