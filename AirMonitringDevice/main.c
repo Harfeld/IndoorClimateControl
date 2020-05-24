@@ -83,33 +83,39 @@ int main(void)
 	LCDInit();
 	addCustomSignsToDisp();
 	Init_MQ();
+	SendString("Calibrating for CO2 \n\r");
 	MqCalibrate(CO2);
+	SendString("Calibration done \n\r");
+	
 	
     while (1) 
     {
 		//read gas data
+		SendString("Reading gas data \n\r");
 		char co2Ppm[7];
 		sprintf(co2Ppm, "%.1f", MQGetGasPercentage(CO2));
-		SendString(co2Ppm);
-		SendString("\r\n");
 		
-		//read temp and hum data		
+		//read temp and hum data
+		SendString("Reading temperature and humidity \n\r");		
 		char hum[7];
 		sprintf(hum, "%.1f", readHumidity());
 		char temp[7];
 		sprintf(temp, "%.1f", readTemperature());
 		
 		//read timestamp
+		SendString("Reading timestamp \n\r");
 		struct dateTime timeStamp;
 		readDS3231(&timeStamp);
 		
 		//output to display
 		//Display timestamp
+		SendString("Displaying time \n\r");
 		LCDClear();
 		displayTimeStamp(&timeStamp);
 		_delay_ms(3000);
 		
 		//Display Humidity and Temperature
+		SendString("Displaying humidity and temperature \n\r");
 		LCDClear();
 		LCDDispString(hum);LCDDispChar('%');LCDDispChar(1);LCDDispChar(' ');
 		LCDGotoXY(0,1);
@@ -117,6 +123,7 @@ int main(void)
 		_delay_ms(3000);
 		
 		//Display Gas concentration
+		SendString("Displaying Gas concentration \n\r");
 		LCDClear();
 		LCDDispString("CO2: ");
 		LCDDispString(co2Ppm);LCDDispString("ppm");

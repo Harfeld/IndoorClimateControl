@@ -53,7 +53,6 @@ void Init_MQ(){
 //Input:   Gas type
 //Sets Ro value for selected type
 void MqCalibrate(enum Gas gas){
-	SendString("Calibrating MQ sensor \n \r");
 	int i;
 	float val = 0;
 	for(i = 0; i < CALIBRATION_SAMPLES; i++){
@@ -64,10 +63,6 @@ void MqCalibrate(enum Gas gas){
 	
 	if(gas == CO2){
 		Ro_CO2 = val * exp( log(CO2Curve[0]/CO2_BASE_PPM) / CO2Curve[1]);
-		SendString("Calibration done for CO2 \n \r");
-		SendString("Ro value: ");
-		SendInteger(Ro_CO2);
-		SendString("\r \n");
 	}else{
 		Ro_CO2 = -1;
 	}

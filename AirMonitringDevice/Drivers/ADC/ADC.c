@@ -32,8 +32,5 @@ int AnalogRead(){
 	{}
 	// Send ADC result to terminal
 	int adcValue = ADCW;
-	SendString("ADC value:");
-	SendInteger(adcValue);
-	SendString("\r\n");
 	return adcValue;
 }
