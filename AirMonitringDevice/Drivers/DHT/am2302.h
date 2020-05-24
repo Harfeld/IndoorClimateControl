@@ -1,5 +1,7 @@
 /*
-Inspiration: https://lastminuteengineers.com/dht11-dht22-arduino-tutorial/ - and referenced libraries from link.
+Inspiration: 
+DHT library by Adafruit - https://github.com/adafruit/DHT-sensor-library
+Datasheet - https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf
 *******************************************
 * "AM2302.H"                              *
 * Header for "AM2302 Temperature driver"  *

@@ -1,5 +1,7 @@
 /*
-Inspiration: DS3231 library by LittleBuster - https://github.com/LittleBuster/avr-rtc3231
+Inspiration: 
+DS3231 library by LittleBuster - https://github.com/LittleBuster/avr-rtc3231
+Datasheet - https://pdf1.alldatasheet.com/datasheet-pdf/view/254832/MAXIM/DS3231.html
 *******************************************
 * "I2C.c"                                 *
 * Implementation for "DS3231 RTC driver"  *

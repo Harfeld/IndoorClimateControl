@@ -2,7 +2,8 @@
  * AirMonitringDevice.c
  *
  * Created: 18/05/2020 08:33:52
- * Author : andre
+ * Author : Andreas Harfeld Jakobsen				 
+ *			Jonas Hingebjerg Hansen
  */ 
 #define F_CPU 16000000
 
