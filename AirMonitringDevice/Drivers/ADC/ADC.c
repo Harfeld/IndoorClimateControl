@@ -1,16 +1,11 @@
-/*
- * ADC.c
- *
- * Created: 18-05-2020 18:26:37
- *  Author: Bruger
- */ 
-
 #include "ADC.h"
 #define F_CPU 16000000
 #include <util/delay.h>
 #include <avr/io.h>
 #include <stdio.h>
 #include "../UART/uart.h"
+
+//This ADC driver is very much inspired by an assignment from MSYS
 
 void Init_ADC()
 {

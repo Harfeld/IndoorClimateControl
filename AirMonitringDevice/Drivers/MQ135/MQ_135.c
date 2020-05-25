@@ -7,10 +7,24 @@
 #include "../UART/uart.h"
 #include "MQ_135.h"
 
-//http://davidegironi.blogspot.com/2014/01/cheap-co2-meter-using-mq135-sensor-with.html#.XsJNx2gzZPY
+//Datasheet
 //https://datasheetspdf.com/pdf/605076/Hanwei/MQ-135/1
+
+//Calculation references
+//http://davidegironi.blogspot.com/2014/01/cheap-co2-meter-using-mq135-sensor-with.html#.XsJNx2gzZPY
 //https://da.co2.earth/
 //https://components101.com/sensors/mq135-gas-sensor-for-air-quality
+
+//Code inspiration MQ-2 driver
+//https://sandboxelectronics.com/?p=165
+
+/*******************************************
+* "MQ_135.c"                                 *
+* Implementation for "MQ-135 driver"*
+* Author: Andreas Harfeld Jakobsen		  *
+*         Jonas Hingebjerg Hansen         *
+* Date:   29.5.2020			              *
+*******************************************/
 
 #define CALIBRATION_SAMPLES 10
 #define CALIBRATION_INTERVAL 500

@@ -1,6 +1,7 @@
 #ifndef MQ_135_H_
 #define MQ_135_H_
 
+//This can be expanded for more gas types
 enum Gas{
 	CO2 = 0
 };
